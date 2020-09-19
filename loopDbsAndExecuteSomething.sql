@@ -11,8 +11,8 @@ select @SQL = @SQL + 'USE'  + QUOTENAME(name) + '
 insert into #FileSizes
 select ' + QUOTENAME(name,'''') + ', Name, Physical_Name, size/1024.0 from sys.database_files ' 
 from sys.databases
---where name NOT IN ('master','tempdb','model','msdb','SSISDB')
---where name IN ('<someDBName')
+where name NOT IN ('master','tempdb','model','msdb','SSISDB')
+--where name IN ('<someDBName>')
 Select @SQL
 execute (@SQL)
 select * from #FileSizes order by DBName, [File Name]
